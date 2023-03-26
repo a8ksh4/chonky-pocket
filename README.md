@@ -1,6 +1,9 @@
 # chonky-pocket
-An almost pocket-sized portable computer!
+An almost pocket-sized portable computer!  I wanted a pocket-sized computer... This is not quite it.  It fits in the cargo pocket of one pair of my shorts, but I'm not going to walk around with it like that.  This is better sized for a handbag.  It has a run-all-day-sized battery and an ethernet port, as a propper computer should!  
+
+
 # Keyboard and Input
+It's hard to fit a full-sized keyboard, or even a 40% keyboard into a small build, but one-handed chording keyboards fill the gap where we want a do-anything mechanical keyboard but don't have the space.  This one is based on the artsey.io layout, with a couple extra keys to 
 # Power System
 ## Software
 ## PSU
