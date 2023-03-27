@@ -5,6 +5,19 @@ A couple of software goals for this project
 * Implement a chording keyboard in software using the raspberry pi gpio pins https://github.com/a8ksh4/gpio-keyboard
 * Get the battery to show up like a laptop battery https://github.com/a8ksh4/rpi-integrated-battery-module
 
+# Case and Stl files
+All of the current STLs are at https://github.com/a8ksh4/chonky-pocket/tree/main/stl_files.
+
+I try to model stuff like this to minimize use of supports and make sure that all of thet visible surfaces are either on the build plate (bottom) or top of the print.  And assembly needs to be considered in the model, too.  Like I can't add features that will block me from sliding in the display.  So there are pop-in panels to go around the raspberry pi ports and the volume and brightness buttons for the display:
+
+<img src="images/usb_panel.png" width="200" /><img src="images/volume_panel.png" width="200" />
+
+The top and bottom of the case sort of friction snap together with a few screws where I can fit them to keep it secure:
+
+<img src="images/top_case.png" width="400" />
+
+<img src="images/bottom_case.png" width="400" />
+
 # Keyboard and Input
 This build uses a few input methods:
 * Mechanical keyboard with chording and mouse emulation.
@@ -14,6 +27,8 @@ This build uses a few input methods:
 It's hard to fit a full-sized keyboard, or even a 40% keyboard into a small build, but one-handed chording keyboards fill the gap where we want a do-anything mechanical keyboard but don't have the space.  This one is based on the [artsey.io](https://www.artsey.io) layout, with a couple extra keys to more derectly access some programming related symbols. 
 
 <img src="images/keyboard_artsey_layout.png" width="400" />
+
+The case halves sort of friction fit and snap together, with a few screws where I could fit them on the top half to make sure it is secure.
 
 ## Keyboard Wiring
 The keyboard and encoder are wired directly to the pi gpio pins.  One wire, the copper zig-zag, goes to ground, and the rest go to digital pins. 
