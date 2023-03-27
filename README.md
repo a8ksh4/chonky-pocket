@@ -61,6 +61,7 @@ Misc Stuff
 
 Input Stuff:
 * Choc Switches: https://www.littlekeyboards.com/collections/keyboard-switches/products/kailh-choc-pro-low-profile-switches?variant=32328459681859
+* Keycaps: 
 * EVQWGD001 Rotary Encoder: Buy on aliexpress
 * Jumper wire for keyboard: https://www.amazon.com/gp/product/B006C4A1WU/
 * Breadboard for GPIO connections
