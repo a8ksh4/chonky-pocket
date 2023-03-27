@@ -16,11 +16,12 @@ It's hard to fit a full-sized keyboard, or even a 40% keyboard into a small buil
 <img src="images/keyboard_artsey_layout.png" width="400" />
 
 ## Wiring
-The keyboard is wired directly to the gpio pins on the pi with a bit of softwaer to read key presses and pass them to the kernel as characters typed. This was a
+The keyboard and encoder are wired directly to the pi gpio pins.  One wire, the copper zig-zag, goes to ground, and the rest go to digital pins. 
 
-<img src="images/keyboard_artsey_layout.png" width="400" />
+<img src="images/keyboard_wiring.jpg" width="400" />
 
-
+Here's the encoder pinout. It has a button built in, sw1 ans sw2, and an encoder with com (common), A, and B.  Com and one of the sw# pins can be connected to ground.  The other sw# pin, A, and B, go to their own gpio pins.  There are encoder libraries that can tell you rotation direction, or you can look at the sequence of pin activation to tell rotation direction.  Each rotaton of the rotary wheel, first one pin will activate, then the other pin, and then they'll both go back to inactive.  The order of activaton indicates direction. 
+<img src="images/encoder_pinout.jpg" width="400" />
 
 # Power System
 
@@ -62,8 +63,10 @@ Power System
 These builds always take a few print iterations to sort out how things fit together - between errors in measurements, changes to the printer that affect sizes of stuff, and oversights.  
 
 Accidentally wired a few gpio pins that weren't available and had to re-route the wires around.
+
 <img src="images/oops0.jpg" width="400" />
 
 And I busted a surface mount button for the LCD brighness and had to replace it.  Of coures I lifted the pad wehn I removed the old button... A little solder bridge to the big ground plane fixed it.
+
 <img src="images/oops1.jpg" width="400" />
 <img src="images/oops2.jpg" width="400" />
