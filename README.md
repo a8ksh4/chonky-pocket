@@ -39,8 +39,14 @@ The Encoder has a button built in, sw1 ans sw2, and a rotary encoder with com (c
 It turns out that if you clip off the nubs and stuff from the bottom of these encoders, you can stuff the pins through a perfboard and use a bit of super-glue to secure them, and then wire one into your project without any custom pcb!
 
 # Power System
+By far, the easiest way to power a cyberdeck is with a rechargable usb battery that the deck just plugs into.  There are a few good ones that will power a Pi 4 without under-voltage warnings, and a Pi Zero, 2, or 3 can be run from a wider variety of usb bricks.  Most usb bricks don't support pass-through charging though, so you need to turn the deck off to charge the battery, and the battery could just be more integrated...
+
+Another option is to use a li-ion cell, or multiple cells, to make a battery, and connect it to a charge controller like the Amp Ripper or Retro PSU to handle charging and voltage boost to the 5v needed to run the deck.  This build uses an Amp Ripper 4000 which has more than ehough power for a Pi 4 and conveniently can report battery charge level and charging current over I2C, so we can report the battery level to the OS for a laptop-like feel for power mgmt.
 
 ## Software
+I adapted an existing kernel module and wrote a simple service to query the battery and report level of charge to the OS. This is documented here:
+https://github.com/a8ksh4/rpi-integrated-battery-module
+
 ## PSU
 ## Battery
 The pack is 1s6p, so one cellin series and 6 parallel, with fuses on the posetive terminals of each cell to protect against shorts.  Photos are from initial test-fit to finished test-fit.
