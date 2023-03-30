@@ -1,9 +1,16 @@
 # chonky-pocket
 An almost pocket-sized portable computer!  I wanted a pocket-sized computer... This is not quite it.  It fits in the cargo pocket of one pair of my shorts, but I'm not going to walk around with it like that.  This is better sized for a handbag.  It has a run-all-day sized battery and an ethernet port, as a propper computer should!  
 
-A couple of software goals for this project
+A couple of goals for this project
 * Implement a chording keyboard in software using the raspberry pi gpio pins https://github.com/a8ksh4/gpio-keyboard
 * Get the battery to show up like a laptop battery https://github.com/a8ksh4/rpi-integrated-battery-module
+* Learn new techniques in onshape - used a surface to build the angled keyboard from, and extruding multiple parts from the same sketches.
+
+And in retrospect, a few things I want to include in the next build:
+* A display that can turn off when idle and save power
+* External gpio, i2c, etc pins from the pi for interacting with project devices.
+* Pi SD card more accessible.
+* Still need to make a smaller build - this probably means using a Pi Zero 2W or trying to strip all the ports off of a Pi 3 or 4 to slim it down, and getting more creative with battery layout to compress things. TBD!
 
 # Case and Stl files
 All of the current STLs are at https://github.com/a8ksh4/chonky-pocket/tree/main/stl_files.
@@ -49,8 +56,8 @@ https://github.com/a8ksh4/rpi-integrated-battery-module
 
 ## PSU
 ## Battery
-The pack is 1s6p, so one cellin series and 6 parallel, with fuses on the posetive terminals of each cell to protect against shorts.  Photos are from initial test-fit to finished test-fit.
-<img src="images/battery0.jpg" width="400" />
+The pack is 1s6p, so one cell in series and 6 parallel, with fuses on the posetive terminals of each cell to protect against shorts.  Photos are from initial test-fit to finished test-fit.  Voltage sums in series, and amp hours sum in parallel, so this is a 3.7v pack with about 6*3ah -> 18 amp hour. It lasts all day.
+<img src="images/battery0.jpg" width="400" /
 <img src="images/battery1.jpg" width="400" />
 <img src="images/battery2.jpg" width="400" />
 <img src="images/battery3.jpg" width="400" />
@@ -83,6 +90,8 @@ Power System
 
 # Outtakes
 These builds always take a few print iterations to sort out how things fit together - between errors in measurements, changes to the printer that affect sizes of stuff, and oversights.  
+
+<img src="images/print_iterations.jpg" width="400" />
 
 Accidentally wired a few gpio pins that weren't available and had to re-route the wires around.
 
