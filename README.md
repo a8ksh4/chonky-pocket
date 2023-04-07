@@ -1,28 +1,43 @@
 # chonky-pocket
 An almost pocket-sized portable computer!  I wanted a pocket-sized computer... This is not quite it.  It fits in the cargo pocket of one pair of my shorts, but I'm not going to walk around with it like that.  This is better sized for a handbag.  It has a run-all-day sized battery and an ethernet port, as a propper computer should!  
 
+<img src="images/perspective0.jpg" width="400" /><img src="images/perspective1.jpg" width="400" /><img src="images/perspective2.jpg" width="400" /><img src="images/held.jpg" width="400" /><img src="images/typing.jpg" width="400" />
+
 A couple of goals for this project
 * Implement a chording keyboard in software using the raspberry pi gpio pins https://github.com/a8ksh4/gpio-keyboard
 * Get the battery to show up like a laptop battery https://github.com/a8ksh4/rpi-integrated-battery-module
 * Learn new techniques in onshape - used a surface to build the angled keyboard from, and extruding multiple parts from the same sketches.
 
 And in retrospect, a few things I want to include in the next build:
-* A display that can turn off when idle and save power
-* External gpio, i2c, etc pins from the pi for interacting with project devices.
-* Pi SD card more accessible.
+* A display that can turn off when idle and save power - I might still set up a transistor power switch to use gpio to switch the screen on and off, but I'd have to figure out how to integrate this with the OS sleep settings, etc.
+* External gpio, i2c, etc pins from the pi for interacting with project devices.  For now, I'll do an external part with a pi pico.
+* Pi SD card more accessible.  Or maybe faster usb3 storage?
 * Still need to make a smaller build - this probably means using a Pi Zero 2W or trying to strip all the ports off of a Pi 3 or 4 to slim it down, and getting more creative with battery layout to compress things. TBD!
 
 # Case Design and Stl files
 All of the current STLs are at https://github.com/a8ksh4/chonky-pocket/tree/main/stl_files.
+
 And you can get the cad designs in OnShape (they have free accounts for non-commercial use) here: https://cad.onshape.com/documents/f3ba133b606f4645057c2510/w/c53c420633cef7709b7d72dc/e/867bf425f6e139860c26cd65?renderMode=0&uiState=64308961ce06995598eb5201
 
-I try to model stuff like this to minimize use of supports and make sure that all of that visible surfaces are either on the build plate (bottom) or top of the print.  And assembly needs to be considered in the model, too.  Like I can't add features that will block me from sliding in the display.  So there are pop-in panels to go around the raspberry pi ports and the volume and brightness buttons for the display:
+I try to model stuff like this to minimize use of supports and make sure that all of that visible surfaces are either on the build plate (bottom) or top of the print.  And assembly needs to be considered in the model, too.  Like I can't add features that will block me from sliding in the display.  So there are **pop-in panels** to go around the raspberry pi **ports** and the **volume and brightness buttons** for the display:
 
 <img src="images/usb_panel.png" width="200" /><img src="images/volume_panel.png" width="200" />
 
 The top and bottom of the case sort of friction snap together with a few screws where I can fit them to keep it secure:
 
 <img src="images/top_case.png" width="400" /><img src="images/bottom_case.png" width="400" />
+
+I generally allow for 0.2mm space between 3d printed parts.  You'll see that in the sketches for the USB and Volume panels where I use the same sketch to extrude an opening in the case as well as extrude the body of the new panel (a separate part).  When a case needs to snap together, 0.1mm or 0.2mm works pretty well.
+
+** Kickstand ** - The keyabord is angled at about 10 degrees and there's a kickstand on the back to tilt the whole unit up to help with screen readability.
+
+<img src="images/kickstand_cad.png" width="200" /><img src="images/kickstand.jpg" width="200" />
+
+** Accessory Mount ** - There are a couple of m3 heat inserts in the top of the unit for mounting any kind of dev board.  I want to be ablet to sit on the couch with with a microcontroller and some parts attached at the top and write code for them without wired dangling all over.
+
+** Power Switch ** - It worked out great just to expose the switch built into the power supply at the edge of the case.
+
+<img src="images/psu_sw_cad.png" width="200" /><img src="images/psu_sw2_cad.png" width="200" />
 
 # Keyboard and Input
 This build uses a few input methods:
@@ -56,6 +71,12 @@ I adapted an existing kernel module and wrote a simple service to query the batt
 https://github.com/a8ksh4/rpi-integrated-battery-module
 
 ## PSU
+This build uses an Amp Ripper 4000 power supply that I was fortunate to get to test pre-release.  This board attaches to the battery and handles charging, as well as boosting the battery voltage (between 4.2v fully charged to ~3v dead) up to 5.1v for the raspberry pi.  It also has an i2c connection for state of charge reporting to the PI - see the above battery modul link.  The AR 4k works really well and I'll definately be buying a couple more for other projects when they're available.  https://www.kickstarter.com/projects/ksd/ampripper-4000-next-gen-battery-charger-and-boost-module
+
+Here's the wiring diaram for the i2c connection:
+
+<img src="images/ar_pi_wiring.jpg" width="400" />
+
 ## Battery
 The pack is 1s6p, so one cell in series and 6 parallel, with fuses on the posetive terminals of each cell to protect against shorts.  Photos are from initial test-fit to finished test-fit.  Voltage sums in series, and amp hours sum in parallel, so this is a 3.7v pack with about 6*3ah -> 18 amp hour. It lasts all day.
 <img src="images/battery0.jpg" width="400" /
@@ -63,7 +84,7 @@ The pack is 1s6p, so one cell in series and 6 parallel, with fuses on the poseti
 <img src="images/battery2.jpg" width="400" />
 <img src="images/battery3.jpg" width="400" />
 <img src="images/battery4.jpg" width="400" />
-# Chassis Design
+
 # Materials List
 
 Misc Stuff
