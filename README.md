@@ -59,12 +59,12 @@ The keyboard and encoder are wired directly to the pi gpio pins.  One wire, the 
 
 ### Encoder
 The Encoder has a button built in, sw1 ans sw2, and a rotary encoder with com (common), A, and B.  Com and one of the sw# pins can be connected to ground.  The other sw# pin, A, and B, go to their own gpio pins.  There are encoder libraries that can tell you rotation direction, or you can look at the sequence of pin activation to tell rotation direction.  Each rotaton of the rotary wheel, first one pin will activate, then the other pin, and then they'll both go back to inactive.  The order of activaton indicates direction. Here's the encoder pinout:
+
 <img src="images/encoder_pinout.jpg" width="300" />
 
 It turns out that if you clip off the plastic nubs and stuff from the bottom of these encoders, you can stuff the pins through a perfboard and use a bit of super-glue to secure them, and then wire one into your project without any custom pcb!
+
 <img src="images/encoder_perfboard.jpg" width="200" /><img src="images/encoder_perfboard2.jpg" width="200" />
-
-
 
 # Power System
 This build uses a few 18650 cells and a charger/boost board (see PSU below) for power.  It can charge while powered on or off and reports the battery state of charge to the OS like a laptop (see Software).  It's no hassle and works well.
