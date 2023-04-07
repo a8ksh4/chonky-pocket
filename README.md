@@ -5,10 +5,11 @@ An almost pocket-sized portable computer!  I wanted a pocket-sized computer... T
 
 <img src="images/perspective1.jpg" width="200" /><img src="images/perspective2.jpg" width="200" /><img src="images/held.jpg" width="200" /><img src="images/typing.jpg" width="200" />
 
-A couple of goals for this project
-* Implement a chording keyboard in software using the raspberry pi gpio pins https://github.com/a8ksh4/gpio-keyboard
-* Get the battery to show up like a laptop battery https://github.com/a8ksh4/rpi-integrated-battery-module
+A couple of goals for this project:
+* Implement a chording keyboard in software using the raspberry pi gpio pins: https://github.com/a8ksh4/gpio-keyboard
+* Get the battery to show up like a laptop battery, reporting state of charg, and charging/discharging status: https://github.com/a8ksh4/rpi-integrated-battery-module
 * Learn new techniques in onshape - used a surface to build the angled keyboard from, and extruding multiple parts from the same sketches.
+* Polished build - brightness and volume buttons accessible, no power issues, etc.
 
 And in retrospect, a few things I want to include in the next build:
 * A display that can turn off when idle and save power - I might still set up a transistor power switch to use gpio to switch the screen on and off, but I'd have to figure out how to integrate this with the OS sleep settings, etc.
@@ -51,41 +52,39 @@ It's hard to fit a full-sized keyboard, or even a 40% keyboard into a small buil
 
 <img src="images/keyboard_artsey_layout.png" width="400" />
 
-
 ## Keyboard Wiring
-The keyboard and encoder are wired directly to the pi gpio pins.  One wire, the copper zig-zag, goes to ground, and the rest go to digital pins. 
+The keyboard and encoder are wired directly to the pi gpio pins.  One wire, the copper zig-zag, goes to ground, and the rest go to digital pins.  Each key gets a digital pin, and the encoder gets three - one for it's clicky button and two for the wheel to sense direction.  With a larger keyboard, we'd have to use matrix wiring with diodes to not use too many gpio pins.
 
 <img src="images/keyboard_wiring.jpg" width="400" />
 
 ### Encoder
 The Encoder has a button built in, sw1 ans sw2, and a rotary encoder with com (common), A, and B.  Com and one of the sw# pins can be connected to ground.  The other sw# pin, A, and B, go to their own gpio pins.  There are encoder libraries that can tell you rotation direction, or you can look at the sequence of pin activation to tell rotation direction.  Each rotaton of the rotary wheel, first one pin will activate, then the other pin, and then they'll both go back to inactive.  The order of activaton indicates direction. Here's the encoder pinout:
-<img src="images/encoder_pinout.jpg" width="400" />
+<img src="images/encoder_pinout.jpg" width="300" />
 
-It turns out that if you clip off the nubs and stuff from the bottom of these encoders, you can stuff the pins through a perfboard and use a bit of super-glue to secure them, and then wire one into your project without any custom pcb!
+It turns out that if you clip off the plastic nubs and stuff from the bottom of these encoders, you can stuff the pins through a perfboard and use a bit of super-glue to secure them, and then wire one into your project without any custom pcb!
+<img src="images/encoder_perfboard.jpg" width="200" /><img src="images/encoder_perfboard2.jpg" width="200" />
+
+
 
 # Power System
-By far, the easiest way to power a cyberdeck is with a rechargable usb battery that the deck just plugs into.  There are a few good ones that will power a Pi 4 without under-voltage warnings, and a Pi Zero, 2, or 3 can be run from a wider variety of usb bricks.  Most usb bricks don't support pass-through charging though, so you need to turn the deck off to charge the battery, and the battery could just be more integrated...
-
-Another option is to use a li-ion cell, or multiple cells, to make a battery, and connect it to a charge controller like the Amp Ripper or Retro PSU to handle charging and voltage boost to the 5v needed to run the deck.  This build uses an Amp Ripper 4000 which has more than ehough power for a Pi 4 and conveniently can report battery charge level and charging current over I2C, so we can report the battery level to the OS for a laptop-like feel for power mgmt.
+This build uses a few 18650 cells and a charger/boost board (see PSU below) for power.  It can charge while powered on or off and reports the battery state of charge to the OS like a laptop (see Software).  It's no hassle and works well.
 
 ## Software
-I adapted an existing kernel module and wrote a simple service to query the battery and report level of charge to the OS. This is documented here:
-https://github.com/a8ksh4/rpi-integrated-battery-module
+I adapted an existing kernel module and wrote a simple service to query the battery and report level of charge to the OS. This is documented here:  https://github.com/a8ksh4/rpi-integrated-battery-module
+
+<img src="images/battery_status.jpg" width="200" />
 
 ## PSU
 This build uses an Amp Ripper 4000 power supply that I was fortunate to get to test pre-release.  This board attaches to the battery and handles charging, as well as boosting the battery voltage (between 4.2v fully charged to ~3v dead) up to 5.1v for the raspberry pi.  It also has an i2c connection for state of charge reporting to the PI - see the above battery modul link.  The AR 4k works really well and I'll definately be buying a couple more for other projects when they're available.  https://www.kickstarter.com/projects/ksd/ampripper-4000-next-gen-battery-charger-and-boost-module
 
 Here's the wiring diaram for the i2c connection:
 
-<img src="images/ar_pi_wiring.jpg" width="400" />
+<img src="images/ar_pi_wiring.png" width="400" />
 
 ## Battery
-The pack is 1s6p, so one cell in series and 6 parallel, with fuses on the posetive terminals of each cell to protect against shorts.  Photos are from initial test-fit to finished test-fit.  Voltage sums in series, and amp hours sum in parallel, so this is a 3.7v pack with about 6*3ah -> 18 amp hour. It lasts all day.
-<img src="images/battery0.jpg" width="400" /
-<img src="images/battery1.jpg" width="400" />
-<img src="images/battery2.jpg" width="400" />
-<img src="images/battery3.jpg" width="400" />
-<img src="images/battery4.jpg" width="400" />
+The pack is 1s6p, so one cell in series and 6 parallel, with fuses on the posetive terminals of each cell to protect against shorts.  Photos are from initial test-fit to finished test-fit.  Voltage sums in series, and amp hours sum in parallel, so this is a 3.7v pack with about 6 * 3ah -> 18 amp hour. It lasts all day.
+
+<img src="images/battery0.jpg" width="200" /><img src="images/battery1.jpg" width="200" /><img src="images/battery2.jpg" width="200" /><img src="images/battery3.jpg" width="200" /><img src="images/battery4.jpg" width="200" />
 
 # Materials List
 
