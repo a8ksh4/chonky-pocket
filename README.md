@@ -12,8 +12,9 @@ And in retrospect, a few things I want to include in the next build:
 * Pi SD card more accessible.
 * Still need to make a smaller build - this probably means using a Pi Zero 2W or trying to strip all the ports off of a Pi 3 or 4 to slim it down, and getting more creative with battery layout to compress things. TBD!
 
-# Case and Stl files
+# Case Design and Stl files
 All of the current STLs are at https://github.com/a8ksh4/chonky-pocket/tree/main/stl_files.
+And you can get the cad designs in OnShape (they have free accounts for non-commercial use) here: https://cad.onshape.com/documents/f3ba133b606f4645057c2510/w/c53c420633cef7709b7d72dc/e/867bf425f6e139860c26cd65?renderMode=0&uiState=64308961ce06995598eb5201
 
 I try to model stuff like this to minimize use of supports and make sure that all of that visible surfaces are either on the build plate (bottom) or top of the print.  And assembly needs to be considered in the model, too.  Like I can't add features that will block me from sliding in the display.  So there are pop-in panels to go around the raspberry pi ports and the volume and brightness buttons for the display:
 
