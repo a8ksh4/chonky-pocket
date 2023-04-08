@@ -3,7 +3,7 @@ An almost pocket-sized portable computer!  I wanted a pocket-sized computer... T
 
 <img src="images/perspective0.jpg" width="400" />
 
-<img src="images/perspective1.jpg" width="200" /><img src="images/perspective2.jpg" width="200" /><img src="images/held.jpg" width="200" /><img src="images/typing.jpg" width="200" />
+<img src="images/perspective1.jpg" width="200" />  <img src="images/perspective2.jpg" width="200" />  <img src="images/held.jpg" width="200" />  <img src="images/typing.jpg" width="200" />
 
 A couple of goals for this project:
 * Implement a chording keyboard in software using the raspberry pi gpio pins: https://github.com/a8ksh4/gpio-keyboard
@@ -24,23 +24,23 @@ And you can get the cad designs in OnShape here [in onshape](https://cad.onshape
 
 I try to model stuff like this to minimize use of supports and make sure that all of that visible surfaces are either on the build plate (bottom) or top of the print.  And assembly needs to be considered in the model, too.  Like I can't add features that will block me from sliding in the display.  So there are **pop-in panels** to go around the raspberry pi **ports** and the **volume and brightness buttons** for the display:
 
-<img src="images/usb_panel.png" width="200" /><img src="images/volume_panel.png" width="200" />
+<img src="images/usb_panel.png" width="200" />  <img src="images/volume_panel.png" width="200" />
 
 **Snap together case** - The top and bottom of the case sort of friction snap together with a few screws where I can fit them to keep it secure:
 
-<img src="images/top_case.png" width="400" /><img src="images/bottom_case.png" width="400" />
+<img src="images/top_case.png" width="400" />  <img src="images/bottom_case.png" width="400" />
 
 I generally allow for 0.2mm space between 3d printed parts where they touch/connect.  You'll see that in the sketches for the USB and Volume panels where I use the same sketch to extrude an opening in the case as well as extrude the body of the new panel (a separate part).  When a case needs to snap together, 0.1mm or 0.2mm works pretty well.
 
 **Kickstand** - The keyabord is angled at about 10 degrees and there's a kickstand on the back to tilt the whole unit up to help with screen readability.
 
-<img src="images/kickstand_cad.png" width="200" /><img src="images/kickstand.jpg" width="200" />
+<img src="images/kickstand_cad.png" width="200" />  <img src="images/kickstand.jpg" width="200" />
 
 **Accessory Mount** - There are a couple of m3 heat inserts in the top of the unit for mounting any kind of dev board.  I want to be ablet to sit on the couch with with a microcontroller and some parts attached at the top and write code for them without wired dangling all over.
 
 **Power Switch** - It worked out great just to expose the switch built into the power supply at the edge of the case.
 
-<img src="images/psu_sw_cad.png" width="200" /><img src="images/psu_sw2_cad.png" width="200" /><img src="images/psu_switch.png" width="200" />
+<img src="images/psu_sw_cad.png" width="200" />  <img src="images/psu_sw2_cad.png" width="200" />  <img src="images/psu_switch.png" width="200" />
 
 # Keyboard and Input
 This build uses a few input methods:
@@ -64,7 +64,7 @@ The Encoder has a button built in, sw1 ans sw2, and a rotary encoder with com (c
 
 It turns out that if you clip off the plastic nubs and stuff from the bottom of these encoders, you can stuff the pins through a perfboard and use a bit of super-glue to secure them, and then wire one into your project without any custom pcb!
 
-<img src="images/encoder_perfboard.jpg" width="200" /><img src="images/encoder_perfboard2.jpg" width="200" />
+<img src="images/encoder_perfboard.jpg" width="200" />  <img src="images/encoder_perfboard2.jpg" width="200" />
 
 # Power System
 This build uses a few 18650 cells and a charger/boost board (see PSU below) for power.  It can charge while powered on or off and reports the battery state of charge to the OS like a laptop (see Software).  It's no hassle and works well.
@@ -84,7 +84,7 @@ Here's the wiring diaram for the i2c connection:
 ## Battery
 The pack is 1s6p, so one cell in series and 6 parallel, with fuses on the posetive terminals of each cell to protect against shorts.  Photos are from initial test-fit to finished test-fit.  Voltage sums in series, and amp hours sum in parallel, so this is a 3.7v pack with about 6 * 3ah -> 18 amp hour. It lasts all day.
 
-<img src="images/battery0.jpg" width="200" /><img src="images/battery1.jpg" width="200" /><img src="images/battery2.jpg" width="200" /><img src="images/battery3.jpg" width="200" /><img src="images/battery4.jpg" width="200" />
+<img src="images/battery0.jpg" width="200" />  <img src="images/battery1.jpg" width="200" />  <img src="images/battery2.jpg" width="200" />  <img src="images/battery3.jpg" width="200" />  <img src="images/battery4.jpg" width="200" />
 
 # Materials List
 
