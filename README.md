@@ -5,14 +5,16 @@ An almost pocket-sized portable computer!  I wanted a pocket-sized computer... T
 
 <img src="images/perspective1.jpg" width="200" />  <img src="images/perspective2.jpg" width="200" />  <img src="images/held.jpg" width="200" />  <img src="images/typing.jpg" width="200" />
 
-A couple of goals for this project:
+**A few goals for this project:**
 * Implement a chording keyboard in software using the raspberry pi gpio pins: https://github.com/a8ksh4/gpio-keyboard
+** And explore using the rotary encoder and gyro/accelerometer board for input.
 * Get the battery to show up like a laptop battery, reporting state of charg, and charging/discharging status: https://github.com/a8ksh4/rpi-integrated-battery-module
 * Learn new techniques in onshape - used a surface to build the angled keyboard from, and extruding multiple parts from the same sketches.
-* Polished build - brightness and volume buttons accessible, no power issues, etc.
+* Polished build - brightness and volume buttons accessible, no power issues, etc that is an incremental improvement from my previous builds.
 
 And in retrospect, a few things I want to include in the next build:
 * A display that can turn off when idle and save power - I might still set up a transistor power switch to use gpio to switch the screen on and off, but I'd have to figure out how to integrate this with the OS sleep settings, etc.
+* External second hdmi port so I can plug in an external monitor.  I might still work out a good way to fit this in.
 * External gpio, i2c, etc pins from the pi for interacting with project devices.  For now, I'll do an external part with a pi pico.
 * Pi SD card more accessible.  Or maybe faster usb3 storage?
 * Still need to make a smaller build - this probably means using a Pi Zero 2W or trying to strip all the ports off of a Pi 3 or 4 to slim it down, and getting more creative with battery layout to compress things. TBD!
@@ -66,6 +68,28 @@ It turns out that if you clip off the plastic nubs and stuff from the bottom of 
 
 <img src="images/encoder_perfboard.jpg" width="200" />  <img src="images/encoder_perfboard2.jpg" width="200" />
 
+### Gyro/Accelerometer
+This is an experiment for sure, using an ITG3205 ADXL345 HMC5883L combo board. I figure I can use either the gyro or the accelerometer for mouse input.  The chip is wired up to the same i2c sda and scl pins as the AR4k uses, as well as ground and 3.3v:
+
+<img src="images/accel_pinout.jpg" width="200" />  <img src="images/accel_wiring.jpg" width="200" />
+
+And "i2cdetect -y 1" reports 4 devices now:
+```dan@pocket:~$ i2cdetect -y 1
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+00:                         -- -- -- -- -- -- -- -- 
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- 1e -- 
+20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+30: -- -- -- -- -- -- 36 -- -- -- -- -- -- -- -- -- 
+40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+50: -- -- -- 53 -- -- -- -- -- -- -- -- -- -- -- -- 
+60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- -- 
+70: -- -- -- -- -- -- -- --  ```
+
+* 36 is the MAX17084 Chip in the AR4k
+* 68 is the ITG3205 gyro
+* ? is the ADXL345 accelerometer
+* ? is the HMC5883L 
+
 # Power System
 This build uses a few 18650 cells and a charger/boost board (see PSU below) for power.  It can charge while powered on or off and reports the battery state of charge to the OS like a laptop (see Software).  It's no hassle and works well.
 
@@ -94,6 +118,7 @@ Misc Stuff
 * Filament - "Design White" and "Galaxy Black": https://www.printedsolid.com/collections/jessie/ - Note that the galaxy black might be dialectric because of mica content, blocking wifi, so I wouldn't print an entire case out of it. 
 * 1/4" Screws: https://www.amazon.com/gp/product/B00GDYNHL6/
 * 3/8" Screws: https://www.amazon.com/gp/product/B00GDYNJNM/
+* m3 heat inserts: https://www.amazon.com/gp/product/B08BJD3W4X/
 
 Input Stuff:
 * Choc Switches: https://www.littlekeyboards.com/collections/keyboard-switches/products/kailh-choc-pro-low-profile-switches?variant=32328459681859
@@ -102,6 +127,7 @@ Input Stuff:
 * Jumper wire for keyboard: https://www.amazon.com/gp/product/B006C4A1WU/
 * Breadboard for GPIO connections
 * Header for GPIO Connections
+* Accelerometer/Gyro Board: https://www.aliexpress.us/item/2251800473351241.html
 
 Power System
 * Amp Ripper 4000 PSU: https://www.kickstarter.com/projects/ksd/ampripper-4000-next-gen-battery-charger-and-boost-module
