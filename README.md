@@ -40,6 +40,10 @@ I generally allow for 0.2mm space between 3d printed parts where they touch/conn
 
 **Accessory Mount** - There are a couple of m3 heat inserts in the top of the unit for mounting any kind of dev board.  I want to be ablet to sit on the couch with with a microcontroller and some parts attached at the top and write code for them without wired dangling all over.
 
+<img src="images/heat_inserts.jpg" width="200" /> 
+
+This was an afterthought, but next time I'll absolutely plan ahead and put stuff like this in the main body.  I've had to reprint the back panel a few times so I added them.  
+
 **Power Switch** - It worked out great just to expose the switch built into the power supply at the edge of the case.
 
 <img src="images/psu_sw_cad.png" width="200" />  <img src="images/psu_sw2_cad.png" width="200" />  <img src="images/psu_switch.png" width="200" />
