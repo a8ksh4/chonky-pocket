@@ -52,6 +52,7 @@ This was an afterthought, but next time I'll absolutely plan ahead and put stuff
 This build uses a few input methods:
 * Mechanical keyboard with chording and mouse emulation.
 * Rotary encoder to emulate a mouse wheel (at least)
+* Accelerometir/Gyro
 * Touch screen
 
 It's hard to fit a full-sized keyboard, or even a 40% keyboard into a small build, but one-handed chording keyboards fill the gap where we want a do-anything mechanical keyboard but don't have the space.  This one is based on the [artsey.io](https://www.artsey.io) layout, with a couple extra keys to more derectly access some programming related symbols. 
